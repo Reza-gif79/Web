@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Website Pribadi - Muhammad Reza Nandaka</title>
+    <style>
+        :root {
+            --bg: #f3f3f3;
+            --text: #222;
+            --card: #ffffff;
+            --primary: #4f46e5;
+        }
+        .dark {
+            --bg: #0f0f0f;
+            --text: #e5e5e5;
+            --card: #1a1a1a;
+            --primary: #818cf8;
+        }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: 0.3s ease;
+        }
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px;
+            background: var(--card);
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid #ddd;
+        }
+        nav a {
+            color: var(--primary);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        h2 {
+            color: var(--primary);
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill {
+            padding: 10px 16px;
+            background: #eef2ff;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            background: var(--primary);
+            color: white;
+        }
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        button {
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        #toggleDark {
+            background: var(--primary);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+            .fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.8s ease;
+        }
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>
+</head>
+<body>
+    <div id="loader">
+        <style>
+            #loader {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--bg);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+                transition: opacity 0.5s;
+            }
+            .spinner {
+                width: 60px;
+                height: 60px;
+                border: 6px solid #ddd;
+                border-top-color: var(--primary);
+                border-radius: 50%;
+                animation: spin 0.9s linear infinite;
+            }
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+        </style>
+        <div class="spinner"></div>
+    </div>
+    <header>
+        <h1>Muhammad Reza Nandaka</h1>
+        <p>Web Developer • HTML • CSS • Python</p>
+    </header>
+
+    <nav>
+        <a href="#about">Tentang Saya</a>
+        <a href="#skills">Skill</a>
+        <a href="#projects">Project</a>
+        <a href="#contact">Kontak</a>
+        <button id="toggleDark">Dark Mode</button>
+    </nav>
+
+    <div class="container" id="about">
+        <h2>Tentang Saya</h2>
+        <p>Halo! Saya Reza, seorang mahasiswa aktif dan web developer junior yang fokus pada HTML, CSS, dan Python. Saya suka mengerjakan project modern dan responsive.</p>
+    </div>
+
+    <div class="container" id="skills">
+        <h2>Skill</h2>
+        <div class="skills-list">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">Python</div>
+            <div class="skill">UI/UX Basic</div>
+        </div>
+    </div>
+
+    <div class="container" id="projects">
+        <h2>Project</h2>
+        <div class="card">
+            <h3>Sistem Manajemen Gudang</h3>
+            <p>Program Python untuk mengelola stok barang dengan menu interaktif.</p>
+        </div>
+        <div class="card">
+            <h3>Website Portfolio</h3>
+            <p>Website personal modern menggunakan HTML dan CSS.</p>
+        </div>
+    </div>
+
+    <div class="container" id="contact">
+        <h2>Kontak</h2>
+        <p>Email: muhammadrezanandaka@gmail.com</p>
+        <button onclick="navigator.clipboard.writeText('muhammadrezanandaka@gmail.com')">Copy Email</button>
+    </div>
+
+    <footer>
+        © 2025 Reza — All Rights Reserved
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('.container, header, footer');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        sections.forEach(sec => {
+            sec.classList.add('fade');
+            observer.observe(sec);
+        });
+
+        const btn = document.getElementById('toggleDark');
+        btn.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+        });
+            const loader = document.getElementById('loader');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
